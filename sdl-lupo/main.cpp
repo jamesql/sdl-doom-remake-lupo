@@ -5,20 +5,75 @@
 #include "types.h"
 #include <vector>
 #include "Renderer.h"
-using namespace Renderer;
+#include <numeric>
+#include "GameLoop.h"
 
-float pitch = 0.0f, yaw = 0.0f;
+struct connection {
+    int x, y;
+};
+
+std::vector<SDL_FPoint> points;
+
+application m_sdlApplication = {
+    nullptr,
+    nullptr,
+    0
+};
+
+void rotate(vec3& point, float x = 1, float y = 1, float z = 1) {
+    float rad = 0;
+
+    rad = x;
+    point.y = cos(rad) * point.y - sin(rad) * point.z;
+    point.z = sin(rad) * point.y + cos(rad) * point.z;
+
+    rad = y;
+    point.x = cos(rad) * point.x + sin(rad) * point.z;
+    point.z = -sin(rad) * point.x + cos(rad) * point.z;
+
+    rad = z;
+    point.x = cos(rad) * point.x - sin(rad) * point.y;
+    point.y = sin(rad) * point.x + cos(rad) * point.y;
+}
+
+void pixel(float x, float y) {
+    points.push_back({x, y});
+}
+
+void show() {
+    SDL_SetRenderDrawColor(m_sdlApplication.r, 0, 0, 0, 255);
+    SDL_RenderClear(m_sdlApplication.r);
+
+    SDL_SetRenderDrawColor(m_sdlApplication.r, 255, 255, 255, 255);
+    for (auto& point : points) {
+        SDL_RenderDrawPointF(m_sdlApplication.r, point.x, point.y);
+    }
+
+    SDL_RenderPresent(m_sdlApplication.r);
+}
+
+void clear() {
+    points.clear();
+}
+
+void line(SDL_FPoint firstPoint, SDL_FPoint secondPoint) {
+    float dx = secondPoint.x - firstPoint.x;
+    float dy = secondPoint.y - firstPoint.y;
+
+    float len = sqrt(dx * dx + dy * dy);
+
+    float ang = atan2(dy, dx);
+
+    for (float i = 0; i < len; i++) {
+        pixel(firstPoint.x + cos(ang) * i, firstPoint.y + sin(ang) * i);
+    }
+}
 
 int main(int argc, char* argv[]) {
 
     SDL_Init(SDL_INIT_EVERYTHING);
 
-    SDL_Window* w = SDL_CreateWindow("DEMO", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, SDL_WINDOW_ALLOW_HIGHDPI);
-    application m_sdlApplication = {
-        w,
-        nullptr,
-        0
-    };
+    m_sdlApplication.w = SDL_CreateWindow("DEMO", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, SDL_WINDOW_ALLOW_HIGHDPI);
 
     m_sdlApplication.r = SDL_CreateRenderer(m_sdlApplication.w, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
@@ -29,38 +84,9 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    Rasterizer raster;
+    GameLoop gameLoop(m_sdlApplication);
 
-    raster.setDisplay(m_sdlApplication.r, WIDTH, HEIGHT);
-    raster.focalLength = 0.2;
-    raster.backfaceCull = 0;
-
-    raster.cam.locate(0, 0, 1);
-
-    //Object test
-    Mesh vulcanMesh;
-    vulcanMesh.loadPly("C:\\Users\\james\\source\\repos\\sdl-lupo\\sdl-lupo\\models\\vulc1.ply");
-    RenderObject craft(&vulcanMesh);
-    craft.vz = -0.1;
-    craft.locate(-1, 0, -4);
-
-    Mesh deloreanMesh;
-    deloreanMesh.loadPly("C:\\Users\\james\\source\\repos\\sdl-lupo\\sdl-lupo\\models\\delor1.ply");
-    RenderObject car(&deloreanMesh);
-    car.vz = -0.1;
-    car.locate(1, 0, -1);
-
-    // replace with game loop
-    while (1)
-    {
-        if (SDL_PollEvent(&m_sdlApplication.event)) {
-            // Get Camera Location
-            if (SDL_MOUSEMOTION == m_sdlApplication.event.type) {
-
-            }
-            if (SDL_QUIT == m_sdlApplication.event.type) break;
-        }
-    }
+    gameLoop.start();
 
     SDL_DestroyWindow(m_sdlApplication.w);
     SDL_DestroyRenderer(m_sdlApplication.r);

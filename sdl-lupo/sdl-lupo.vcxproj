@@ -19,27 +19,19 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Map.cpp" />
-    <ClCompile Include="Plane.cpp" />
-    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Raycaster.cpp" />
     <ClCompile Include="Renderer.cpp" />
-    <ClCompile Include="Segment.cpp" />
-    <ClCompile Include="Sprite.cpp" />
-    <ClCompile Include="State.cpp" />
     <ClCompile Include="Util.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="e_config.h" />
     <ClInclude Include="GameLoop.h" />
-    <ClInclude Include="Map.h" />
-    <ClInclude Include="Plane.h" />
-    <ClInclude Include="Player.h" />
+    <ClInclude Include="Raycaster.h" />
     <ClInclude Include="Renderer.h" />
-    <ClInclude Include="Segment.h" />
-    <ClInclude Include="Sprite.h" />
-    <ClInclude Include="State.h" />
     <ClInclude Include="types.h" />
     <ClInclude Include="Util.h" />
   </ItemGroup>

@@ -8,6 +8,23 @@ struct application {
 	SDL_Event event;
 };
 
+struct vec2 {
+    float x, y;
+};
+
+struct vec3 {
+    float x, y, z;
+};
+
+struct mColor {
+    int r, g, b;
+};
+
+struct Pixel {
+    vec2 loc;
+    mColor col;
+};
+
 struct Point {
 	constexpr Point(float x, float y) : x { x }, y { y } {}
 
