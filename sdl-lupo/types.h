@@ -8,6 +8,13 @@ struct application {
 	SDL_Event event;
 };
 
+struct Controls {
+    bool w = false;
+    bool a = false;
+    bool s = false;
+    bool d = false;
+};
+
 struct vec2 {
     float x, y;
 };

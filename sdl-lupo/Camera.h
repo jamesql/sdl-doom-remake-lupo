@@ -10,5 +10,8 @@ private:
 public:
 	Camera(vec3 initPos) : pos{ initPos }  {}
 	Camera() { pos = { 0,0,0 }; }
+	void move(vec3 movement);
+	void setPos(vec3 newPos);
+	vec3 getPos();
 };
 
