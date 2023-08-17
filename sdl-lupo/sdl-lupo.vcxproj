@@ -28,6 +28,7 @@
     <ClCompile Include="Segment.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="State.cpp" />
+    <ClCompile Include="Util.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="e_config.h" />
@@ -40,6 +41,7 @@
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="types.h" />
+    <ClInclude Include="Util.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -94,7 +96,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\james\Downloads\SDL2-devel-2.28.2-VC\SDL2-2.28.2\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\james\source\repos\sdl-lupo\glm;C:\Users\james\Downloads\SDL2-devel-2.28.2-VC\SDL2-2.28.2\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\james\Downloads\SDL2-devel-2.28.2-VC\SDL2-2.28.2\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
