@@ -14,6 +14,7 @@ public:
 	Renderer(application& app) : m_sdlApp{ app } {}
 	Renderer() {}
 	void addPixel(vec2 point);
+	void addPixel(float x, float y);
 	void drawAll();
 	void clear();
 	void drawLine(vec2 firstPoint, vec2 secondPoint);

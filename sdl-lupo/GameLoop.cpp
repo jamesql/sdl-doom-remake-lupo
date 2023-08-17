@@ -7,9 +7,6 @@ void GameLoop::start()
 
 	while (1) {
 		SDL_Event event;
-		for (int i = 0; i < 100; i++) {
-			canvas.addPixel({ 300.f + i, 400.f + i });
-		}
 
 
 		if (SDL_PollEvent(&event)) {
@@ -51,16 +48,14 @@ void GameLoop::start()
 
 		}
 
-		if (controls.w) {
-			std::cout << "W Pressed" << std::endl;
-		}
-
 		GameLoop::loop();
 	}
 }
 
 void GameLoop::loop()
 {
+	canvas.drawLine({ 200,200 }, { 500,500 });
+
 	canvas.drawAll();
 	canvas.clear();
 }
