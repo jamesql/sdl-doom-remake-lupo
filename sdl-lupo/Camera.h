@@ -6,9 +6,11 @@
 class Camera
 {
 private:
+	float ang = 1.5708;
 	vec2 pos;
+	// todo: init delta on camera init - default to 90 degs
 	vec2 delta;
-	float ang = 0;
+
 public:
 	Camera(vec2 initPos) : pos{ initPos }  {}
 	Camera() { pos = { 640,350 }; }
@@ -17,5 +19,6 @@ public:
 	vec2 getPos();
 	void adjustAngle(float dAng);
 	vec2 getDelta();
+	float getAngle();
 };
 

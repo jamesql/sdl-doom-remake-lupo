@@ -3,6 +3,7 @@
 #include <SDL.h>
 #include "Renderer.h"
 #include "Camera.h"
+#include "Raycaster.h"
 
 class GameLoop
 {

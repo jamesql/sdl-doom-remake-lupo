@@ -31,3 +31,8 @@ void Camera::adjustAngle(float dAng)
 vec2 Camera::getDelta() {
 	return this->delta;
 }
+
+float Camera::getAngle()
+{
+	return this->ang;
+}

@@ -21,7 +21,8 @@ void GameLoop::start()
 					cam.adjustAngle(-0.1);
 					break;
 				case SDLK_s:
-					cam.move(cam.getDelta());
+					vec2 v = cam.getDelta();
+					cam.move({ -v.x, -v.y });
 					break;
 				case SDLK_d:
 					cam.adjustAngle(0.1);
@@ -43,6 +44,9 @@ void GameLoop::loop()
 	// draw ray
 	canvas.drawLine(pos, {pos.x+delta.x*5, pos.y+delta.y*5});
 
+	// draw actual rays
+	vec2 ray = Raycaster::drawRays(cam.getPos(), cam.getAngle());
+	canvas.drawLine(cam.getPos(), ray);
 
 	canvas.drawAll();
 	canvas.clear();
