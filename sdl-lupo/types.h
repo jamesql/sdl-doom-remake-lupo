@@ -15,6 +15,18 @@ struct Controls {
     bool d = false;
 };
 
+struct m4x4 {
+    float m[4][4] = { 0 };
+};
+
+struct Triangle {
+    vec3 points[3];
+};
+
+struct Mesh {
+    std::vector<Triangle> tris;
+};
+
 struct vec2 {
     float x, y;
 };

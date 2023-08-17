@@ -8,12 +8,6 @@
 #include <numeric>
 #include "GameLoop.h"
 
-struct connection {
-    int x, y;
-};
-
-std::vector<SDL_FPoint> points;
-
 application m_sdlApplication = {
     nullptr,
     nullptr,
@@ -34,39 +28,6 @@ void rotate(vec3& point, float x = 1, float y = 1, float z = 1) {
     rad = z;
     point.x = cos(rad) * point.x - sin(rad) * point.y;
     point.y = sin(rad) * point.x + cos(rad) * point.y;
-}
-
-void pixel(float x, float y) {
-    points.push_back({x, y});
-}
-
-void show() {
-    SDL_SetRenderDrawColor(m_sdlApplication.r, 0, 0, 0, 255);
-    SDL_RenderClear(m_sdlApplication.r);
-
-    SDL_SetRenderDrawColor(m_sdlApplication.r, 255, 255, 255, 255);
-    for (auto& point : points) {
-        SDL_RenderDrawPointF(m_sdlApplication.r, point.x, point.y);
-    }
-
-    SDL_RenderPresent(m_sdlApplication.r);
-}
-
-void clear() {
-    points.clear();
-}
-
-void line(SDL_FPoint firstPoint, SDL_FPoint secondPoint) {
-    float dx = secondPoint.x - firstPoint.x;
-    float dy = secondPoint.y - firstPoint.y;
-
-    float len = sqrt(dx * dx + dy * dy);
-
-    float ang = atan2(dy, dx);
-
-    for (float i = 0; i < len; i++) {
-        pixel(firstPoint.x + cos(ang) * i, firstPoint.y + sin(ang) * i);
-    }
 }
 
 int main(int argc, char* argv[]) {
