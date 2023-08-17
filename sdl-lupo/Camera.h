@@ -11,7 +11,7 @@ private:
 	float ang = 0;
 public:
 	Camera(vec2 initPos) : pos{ initPos }  {}
-	Camera() { pos = { 0,0 }; }
+	Camera() { pos = { 640,350 }; }
 	void move(vec2 movement);
 	void setPos(vec2 newPos);
 	vec2 getPos();

@@ -37,10 +37,12 @@ void GameLoop::start()
 
 void GameLoop::loop()
 {
-	canvas.drawLine({ 200,200 }, { 500,500 });
+	vec2 pos = cam.getPos();
+	vec2 delta = cam.getDelta();
 
-	canvas.drawTriangle({ 150,30 }, { 300,200 }, {450, 30});
-	canvas.drawTriangle({ 300,90 }, { 600,500 }, { 900, 20 });
+	// draw ray
+	canvas.drawLine(pos, {pos.x+delta.x*5, pos.y+delta.y*5});
+
 
 	canvas.drawAll();
 	canvas.clear();
