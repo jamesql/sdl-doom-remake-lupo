@@ -1,18 +1,9 @@
 #pragma once
-#include <string>
+#include "types.h"
 
 namespace Util {
-
-	std::string mString(const char data[8]) {
-        char d[9];
-        d[8] = 0;
-        memcpy(d, data, 8);
-        for (int i = 0; i < 8; i++)
-        {
-            d[i] = static_cast<char>(toupper(d[i]));
-        }
-        return std::string(d);
-	}
-
+    float degToRad(int a);
+    int fixAng(int a);
+    float distance(vec2 firstPoint, vec2 secondPoint, int ang);
 };
 

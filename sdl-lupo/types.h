@@ -8,27 +8,14 @@ struct application {
 	SDL_Event event;
 };
 
-struct Controls {
-    bool w = false;
-    bool a = false;
-    bool s = false;
-    bool d = false;
-};
-
-struct m4x4 {
-    float m[4][4] = { 0 };
-};
-
-struct Triangle {
-    vec3 points[3];
-};
-
-struct Mesh {
-    std::vector<Triangle> tris;
-};
-
 struct vec2 {
     float x, y;
+
+    vec2 operator+(vec2& v) {
+        x += v.x;
+        y += v.y;
+        return *this;
+    }
 };
 
 struct vec3 {

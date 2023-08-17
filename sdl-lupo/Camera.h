@@ -6,12 +6,16 @@
 class Camera
 {
 private:
-	vec3 pos;
+	vec2 pos;
+	vec2 delta;
+	float ang = 0;
 public:
-	Camera(vec3 initPos) : pos{ initPos }  {}
-	Camera() { pos = { 0,0,0 }; }
-	void move(vec3 movement);
-	void setPos(vec3 newPos);
-	vec3 getPos();
+	Camera(vec2 initPos) : pos{ initPos }  {}
+	Camera() { pos = { 0,0 }; }
+	void move(vec2 movement);
+	void setPos(vec2 newPos);
+	vec2 getPos();
+	void adjustAngle(float dAng);
+	vec2 getDelta();
 };
 

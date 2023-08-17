@@ -15,33 +15,16 @@ void GameLoop::start()
 			if (SDL_KEYDOWN == event.type) {
 				switch (event.key.keysym.sym) {
 				case SDLK_w:
-					controls.w = true;
+					cam.move(cam.getDelta());
 					break;
 				case SDLK_a:
-					controls.a = true;
+					cam.adjustAngle(-0.1);
 					break;
 				case SDLK_s:
-					controls.s = true;
+					cam.move(cam.getDelta());
 					break;
 				case SDLK_d:
-					controls.d = true;
-					break;
-				}
-			}
-
-			if (SDL_KEYUP == event.type) {
-				switch (event.key.keysym.sym) {
-				case SDLK_w:
-					controls.w = false;
-					break;
-				case SDLK_a:
-					controls.a = false;
-					break;
-				case SDLK_s:
-					controls.s = false;
-					break;
-				case SDLK_d:
-					controls.d = false;
+					cam.adjustAngle(0.1);
 					break;
 				}
 			}
@@ -57,7 +40,10 @@ void GameLoop::loop()
 	canvas.drawLine({ 200,200 }, { 500,500 });
 
 	canvas.drawTriangle({ 150,30 }, { 300,200 }, {450, 30});
+	canvas.drawTriangle({ 300,90 }, { 600,500 }, { 900, 20 });
 
 	canvas.drawAll();
 	canvas.clear();
+
+	GameLoop::frame++;
 }

@@ -2,17 +2,15 @@
 
 #include <SDL.h>
 #include "Renderer.h"
+#include "Camera.h"
 
 class GameLoop
 {
-private:
+protected:
 	int frame = 0;
 	Renderer canvas;
+	Camera cam;
 	application m_sdlApp;
-
-	// move to player eventually 
-	vec2 velo{ 0,0 };
-	Controls controls;
 	
 public:
 	void start();
