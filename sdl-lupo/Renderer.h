@@ -19,5 +19,6 @@ public:
 	void clear();
 	void drawLine(vec2 firstPoint, vec2 secondPoint);
 	void fillRect(SDL_Rect* rec, int r, int g, int b);
+	void drawTriangle(vec2 firstPoint, vec2 secondPoint, vec2 thirdPoint);
 
 };

@@ -56,6 +56,8 @@ void GameLoop::loop()
 {
 	canvas.drawLine({ 200,200 }, { 500,500 });
 
+	canvas.drawTriangle({ 150,30 }, { 300,200 }, {450, 30});
+
 	canvas.drawAll();
 	canvas.clear();
 }

@@ -38,6 +38,12 @@
 		}
 	}
 
+	void Renderer::drawTriangle(vec2 firstPoint, vec2 secondPoint, vec2 thirdPoint) {
+		drawLine(firstPoint, secondPoint);
+		drawLine(secondPoint, thirdPoint);
+		drawLine(thirdPoint, firstPoint);
+	}
+
 	void Renderer::fillRect(SDL_Rect* rec, int r, int g, int b) {
 		SDL_SetRenderDrawColor(Renderer::m_sdlApp.r, r, g, b, 255);
 		SDL_RenderFillRect(Renderer::m_sdlApp.r, rec);
