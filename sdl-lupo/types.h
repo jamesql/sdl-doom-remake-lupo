@@ -65,10 +65,9 @@ struct Location : Point
 
 struct Line
 {
-    constexpr Line(Vertex s, Vertex e) : s{ s }, e{ e } {}
-
-    Vertex s;
-    Vertex e;
+    vec2 firstPoint;
+    vec2 secondPoint;
+    int width;
 };
 
 struct Rectangle {
@@ -77,4 +76,9 @@ struct Rectangle {
     int g;
     int b;
     int a;
+};
+
+struct RaycastData {
+    vec2 castEnd;
+    float dis;
 };

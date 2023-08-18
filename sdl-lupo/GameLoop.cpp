@@ -1,6 +1,8 @@
 #include "GameLoop.h"
 #include <iostream>
+#include "Util.h"
 
+#define R 0.0174533
 
 void GameLoop::start()
 {
@@ -47,8 +49,25 @@ void GameLoop::loop()
 	canvas.drawLine(pos, {pos.x+delta.x*5, pos.y+delta.y*5});
 
 	// draw actual rays
-	vec2 ray = Raycaster::drawRays(cam.getPos(), cam.getAngle());
-	canvas.drawLine(cam.getPos(), ray);
+	float ang = cam.getAngle();
+	vec2 camPos = cam.getPos();
+
+	float startAngle = ang - 30 * R;
+	float endAngle = ang + 29 * R;
+
+	float curAng;
+	// draw 3d walls
+	int r = 0;
+
+	for (curAng = startAngle; curAng <= endAngle; curAng += R) {
+		RaycastData ray = Raycaster::drawRays(camPos, Util::fixAngRad(curAng));
+		int lineH = (TempMap::cSize * 720) / ray.dis;
+		if (lineH > 320) lineH = 320;
+		int lineOff = 160 - lineH/2;
+		canvas.drawLine({ r * 8.f + 530, lineH + 0.0f + lineOff } , { r*8.f + 530, lineOff + 0.0f });
+		canvas.drawLine(camPos, ray.castEnd);
+		r++;
+	}
 
 	canvas.drawAll();
 	canvas.clear();

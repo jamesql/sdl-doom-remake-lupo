@@ -11,6 +11,13 @@ int Util::fixAng(int a) {
 	return a; 
 }
 
+float Util::fixAngRad(float ang) {
+	if (ang > 6.26573) ang -= 6.28319;
+	if (ang < 0) ang += 6.28319;
+	return ang;
+
+}
+
 float Util::distance(vec2 firstPoint, vec2 secondPoint, int ang)
 {
 	return cos(ang) * (secondPoint.x - firstPoint.x) - sin(ang) * (secondPoint.y-firstPoint.y);

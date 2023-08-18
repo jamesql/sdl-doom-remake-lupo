@@ -20,6 +20,8 @@
 			SDL_RenderFillRect(Renderer::m_sdlApp.r, &rec.rec);
 		}
 
+		// draw v lines - todo?
+
 		SDL_SetRenderDrawColor(Renderer::m_sdlApp.r, 255, 255, 255, 255);
 		for (auto& point : pixels) {
 			SDL_RenderDrawPointF(Renderer::m_sdlApp.r, point.x, point.y);
@@ -46,10 +48,17 @@
 		}
 	}
 
+	
+
 	void Renderer::drawTriangle(vec2 firstPoint, vec2 secondPoint, vec2 thirdPoint) {
 		drawLine(firstPoint, secondPoint);
 		drawLine(secondPoint, thirdPoint);
 		drawLine(thirdPoint, firstPoint);
+	}
+
+	void Renderer::drawWideLine(vec2 firstPoint, vec2 secondPoint, int width)
+	{
+		//SDL_RenderDrawLines()
 	}
 
 	application Renderer::getApp()
