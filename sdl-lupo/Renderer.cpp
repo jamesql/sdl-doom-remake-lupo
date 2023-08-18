@@ -13,10 +13,18 @@
 		SDL_SetRenderDrawColor(Renderer::m_sdlApp.r, 0, 0, 0, 255);
 		SDL_RenderClear(Renderer::m_sdlApp.r);
 
+		// draw rects
+		for (auto& rec : rects)
+		{
+			SDL_SetRenderDrawColor(Renderer::m_sdlApp.r, rec.r, rec.g, rec.b, rec.a);
+			SDL_RenderFillRect(Renderer::m_sdlApp.r, &rec.rec);
+		}
+
 		SDL_SetRenderDrawColor(Renderer::m_sdlApp.r, 255, 255, 255, 255);
 		for (auto& point : pixels) {
 			SDL_RenderDrawPointF(Renderer::m_sdlApp.r, point.x, point.y);
 		}
+
 
 		SDL_RenderPresent(Renderer::m_sdlApp.r);
 	}
@@ -44,7 +52,11 @@
 		drawLine(thirdPoint, firstPoint);
 	}
 
-	void Renderer::fillRect(SDL_Rect* rec, int r, int g, int b) {
-		SDL_SetRenderDrawColor(Renderer::m_sdlApp.r, r, g, b, 255);
-		SDL_RenderFillRect(Renderer::m_sdlApp.r, rec);
+	application Renderer::getApp()
+	{
+		return this->m_sdlApp;
+	}
+
+	void Renderer::addRect(SDL_Rect rec, int r, int g, int b) {
+		rects.push_back(Rectangle{rec,r,g,b,255});
 	}

@@ -71,3 +71,10 @@ struct Line
     Vertex e;
 };
 
+struct Rectangle {
+    SDL_Rect rec;
+    int r;
+    int g;
+    int b;
+    int a;
+};

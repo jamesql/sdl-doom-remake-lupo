@@ -16,6 +16,7 @@ protected:
 public:
 	void start();
 	void loop();
+	void drawTestMap();
 
 	GameLoop(application& app) : m_sdlApp{ app } {
 		this->canvas = Renderer(app);

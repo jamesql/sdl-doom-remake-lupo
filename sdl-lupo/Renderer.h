@@ -9,6 +9,7 @@ class Renderer {
 private: 
 	application m_sdlApp;
 	std::vector<vec2> pixels;
+	std::vector<Rectangle> rects;
 
 public:
 	Renderer(application& app) : m_sdlApp{ app } {}
@@ -18,7 +19,8 @@ public:
 	void drawAll();
 	void clear();
 	void drawLine(vec2 firstPoint, vec2 secondPoint);
-	void fillRect(SDL_Rect* rec, int r, int g, int b);
+	void addRect(SDL_Rect rec, int r, int g, int b);
 	void drawTriangle(vec2 firstPoint, vec2 secondPoint, vec2 thirdPoint);
+	application getApp();
 
 };
