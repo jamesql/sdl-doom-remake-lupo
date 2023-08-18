@@ -1,6 +1,5 @@
 #pragma once
 
-#include <SDL.h>
 #include "e_config.h"
 #include "types.h"
 #include <vector>

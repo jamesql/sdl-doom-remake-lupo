@@ -22,7 +22,6 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Map.cpp" />
     <ClCompile Include="Raycaster.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="TempMap.cpp" />
@@ -32,7 +31,6 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="e_config.h" />
     <ClInclude Include="GameLoop.h" />
-    <ClInclude Include="Map.h" />
     <ClInclude Include="Raycaster.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="TempMap.h" />

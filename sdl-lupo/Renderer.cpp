@@ -1,5 +1,5 @@
 #include "Renderer.h"
-
+#include <SDL.h>
 	
 	void Renderer::addPixel(Pixel p) {
 		pixels.push_back(p);

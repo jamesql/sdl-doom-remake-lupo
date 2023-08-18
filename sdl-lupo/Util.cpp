@@ -1,4 +1,5 @@
 #include "Util.h"
+#include <corecrt_math.h>
 
 float Util::degToRad(int a)
 {

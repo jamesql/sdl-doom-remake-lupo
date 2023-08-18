@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <SDL.h>
 #include <cstdlib>
 #include "e_config.h"
 #include "types.h"
@@ -7,6 +6,7 @@
 #include "Renderer.h"
 #include <numeric>
 #include "GameLoop.h"
+#include "../../../../Downloads/SDL2-devel-2.28.2-VC/SDL2-2.28.2/include/SDL.h"
 
 application m_sdlApplication = {
     nullptr,

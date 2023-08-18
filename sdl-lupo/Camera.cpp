@@ -1,4 +1,6 @@
 #include "Camera.h"
+#include <corecrt_math_defines.h>
+#include <corecrt_math.h>
 
 void Camera::move(vec2 movement)
 {
