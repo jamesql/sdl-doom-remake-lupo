@@ -46,7 +46,7 @@ void GameLoop::loop()
 	GameLoop::drawTestMap();
 
 	// draw ray
-	canvas.drawLine(pos, {pos.x+delta.x*5, pos.y+delta.y*5});
+	canvas.drawLine(pos, {pos.x+delta.x*5, pos.y+delta.y*5}, {0, 255, 0, 255});
 
 	// draw actual rays
 	float ang = cam.getAngle();
@@ -64,10 +64,12 @@ void GameLoop::loop()
 		int lineH = (TempMap::cSize * 320) / ray.dis;
 		if (lineH > 320) lineH = 320;
 		int lineOff = 160 - lineH/2;
+		mColor col = { 0, 27, 126, 255 };
+		if (ray.shaded) col = {0, 55, 255, 255};
 		for (int i = 0; i < 8; i++) {
-			canvas.drawLine({ r * 8.f + 530 + i, lineH + 0.0f + lineOff }, { r * 8.f + 530 + i, lineOff + 0.0f });
+			canvas.drawLine({ r * 8.f + 530 + i, lineH + 0.0f + lineOff }, { r * 8.f + 530 + i, lineOff + 0.0f }, col);
 		}
-		canvas.drawLine(camPos, ray.castEnd);
+		canvas.drawLine(camPos, ray.castEnd, {255, 0, 0, 255});
 		r++;
 	}
 

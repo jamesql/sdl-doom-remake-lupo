@@ -2,10 +2,11 @@
 #include <iostream>
 #include "Util.h"
 
+// redo this method for cleanliness 
+
 #define P2 M_PI/2
 #define P3 3*M_PI/2
 
-// refactor to adjust angle from game loop and use rays to project 3d, also maybe need to change return type
 RaycastData Raycaster::drawRays(vec2 pos, float ang, float camAng) {
 	int r, mx, my, mapPos, dof;
 	float rx, ry, ra, xo, yo;
@@ -14,6 +15,8 @@ RaycastData Raycaster::drawRays(vec2 pos, float ang, float camAng) {
 
 	float vx, vy;
 	float disVertical = 1000000.0, disHorizontal = 1000000.0;
+
+	bool shaded = true;
 
 	ra = ang;
 	// --- Vertical Check --- 
@@ -113,6 +116,7 @@ RaycastData Raycaster::drawRays(vec2 pos, float ang, float camAng) {
 		rx = vx;
 		ry = vy;
 		distance = disVertical;
+		shaded = false;
 	}
 	else {
 		distance = disHorizontal;
@@ -120,5 +124,5 @@ RaycastData Raycaster::drawRays(vec2 pos, float ang, float camAng) {
 
 	distance *= cos(ca);
 
-	return { { rx, ry }, distance };
+	return { { rx, ry }, distance, shaded};
 }

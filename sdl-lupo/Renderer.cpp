@@ -1,12 +1,12 @@
 #include "Renderer.h"
 
 	
-	void Renderer::addPixel(vec2 point) {
-		pixels.push_back(point);
+	void Renderer::addPixel(Pixel p) {
+		pixels.push_back(p);
 	}
 
-	void Renderer::addPixel(float x, float y) {
-		pixels.push_back({ x, y });
+	void Renderer::addPixel(float x, float y, mColor col) {
+		pixels.push_back({ { x, y }, col});
 	}
 
 	void Renderer::drawAll() {
@@ -20,11 +20,10 @@
 			SDL_RenderFillRect(Renderer::m_sdlApp.r, &rec.rec);
 		}
 
-		// draw v lines - todo?
-
-		SDL_SetRenderDrawColor(Renderer::m_sdlApp.r, 255, 255, 255, 255);
 		for (auto& point : pixels) {
-			SDL_RenderDrawPointF(Renderer::m_sdlApp.r, point.x, point.y);
+			mColor c = point.col;
+			SDL_SetRenderDrawColor(Renderer::m_sdlApp.r, c.r, c.g, c.b, c.a);
+			SDL_RenderDrawPointF(Renderer::m_sdlApp.r, point.loc.x, point.loc.y);
 		}
 
 
@@ -36,7 +35,7 @@
 		rects.clear();
 	}
 
-	void Renderer::drawLine(vec2 firstPoint, vec2 secondPoint) {
+	void Renderer::drawLine(vec2 firstPoint, vec2 secondPoint, mColor c) {
 		float dx = secondPoint.x - firstPoint.x;
 		float dy = secondPoint.y - firstPoint.y;
 
@@ -45,16 +44,16 @@
 		float ang = atan2(dy, dx);
 
 		for (float i = 0; i < len; i++) {
-			addPixel(firstPoint.x + cos(ang) * i, firstPoint.y + sin(ang) * i );
+			addPixel(firstPoint.x + cos(ang) * i, firstPoint.y + sin(ang) * i, c);
 		}
 	}
 
 	
 
 	void Renderer::drawTriangle(vec2 firstPoint, vec2 secondPoint, vec2 thirdPoint) {
-		drawLine(firstPoint, secondPoint);
-		drawLine(secondPoint, thirdPoint);
-		drawLine(thirdPoint, firstPoint);
+		drawLine(firstPoint, secondPoint, { 255, 0, 0, 255 });
+		drawLine(secondPoint, thirdPoint, { 255, 0, 0, 255 });
+		drawLine(thirdPoint, firstPoint, {255, 0, 0, 255});
 	}
 
 	void Renderer::drawWideLine(vec2 firstPoint, vec2 secondPoint, int width)

@@ -23,7 +23,7 @@ struct vec3 {
 };
 
 struct mColor {
-    int r, g, b;
+    int r, g, b, a;
 };
 
 struct Pixel {
@@ -81,4 +81,5 @@ struct Rectangle {
 struct RaycastData {
     vec2 castEnd;
     float dis;
+    bool shaded;
 };
