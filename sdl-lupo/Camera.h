@@ -13,7 +13,7 @@ private:
 
 public:
 	Camera(vec2 initPos) : pos{ initPos }  {}
-	Camera() { pos = { 640,350 }; }
+	Camera() { pos = { 100,100 }; }
 	void move(vec2 movement);
 	void setPos(vec2 newPos);
 	vec2 getPos();

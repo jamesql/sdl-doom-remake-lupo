@@ -4,7 +4,7 @@
 #define P2 M_PI/2
 #define P3 3*M_PI/2
 
-
+// refactor to adjust angle from game loop and use rays to project 3d, also maybe need to change return type
 vec2 Raycaster::drawRays(vec2 pos, float ang) {
 	int r, mx, my, mapPos, dof;
 	float rx, ry, ra, xo, yo;
@@ -13,6 +13,10 @@ vec2 Raycaster::drawRays(vec2 pos, float ang) {
 	ra = ang;
 
 	for (r = 0; r < 1; r++) {
+
+		// --- Vertical Check --- 
+		dof = 0; 
+
 		// --- Horizontal Check --- 
 		dof = 0;
 		float aTan = -1 / tan(ra);
