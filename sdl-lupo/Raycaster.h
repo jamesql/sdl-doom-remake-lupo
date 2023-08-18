@@ -4,5 +4,5 @@
 #include "Renderer.h"
 
 namespace Raycaster {
-	RaycastData drawRays(vec2 pos, float ang);
+	RaycastData drawRays(vec2 pos, float ang, float camAng);
 }

@@ -60,11 +60,14 @@ void GameLoop::loop()
 	int r = 0;
 
 	for (curAng = startAngle; curAng <= endAngle; curAng += R) {
-		RaycastData ray = Raycaster::drawRays(camPos, Util::fixAngRad(curAng));
-		int lineH = (TempMap::cSize * 720) / ray.dis;
+		RaycastData ray = Raycaster::drawRays(camPos, Util::fixAngRad(curAng), ang);
+		printf(" %f \n", ray.dis);
+		int lineH = (TempMap::cSize * 320) / ray.dis;
 		if (lineH > 320) lineH = 320;
 		int lineOff = 160 - lineH/2;
-		canvas.drawLine({ r * 8.f + 530, lineH + 0.0f + lineOff } , { r*8.f + 530, lineOff + 0.0f });
+		for (int i = 0; i < 8; i++) {
+			canvas.drawLine({ r * 8.f + 530 + i, lineH + 0.0f + lineOff }, { r * 8.f + 530 + i, lineOff + 0.0f });
+		}
 		canvas.drawLine(camPos, ray.castEnd);
 		r++;
 	}

@@ -6,7 +6,7 @@
 #define P3 3*M_PI/2
 
 // refactor to adjust angle from game loop and use rays to project 3d, also maybe need to change return type
-RaycastData Raycaster::drawRays(vec2 pos, float ang) {
+RaycastData Raycaster::drawRays(vec2 pos, float ang, float camAng) {
 	int r, mx, my, mapPos, dof;
 	float rx, ry, ra, xo, yo;
 
@@ -100,7 +100,14 @@ RaycastData Raycaster::drawRays(vec2 pos, float ang) {
 	disVertical = abs(disVertical);
 	disHorizontal = abs(disHorizontal);
 
-	float ca = Util::fixAngRad(ang - ra);
+	float ca = camAng - ra;
+	if (ca < 0) {
+		ca += 2 * M_PI;
+	}
+
+	if (ca > 2 * M_PI) {
+		ca -= 2 * M_PI;
+	}
 
 	if (disVertical < disHorizontal) {
 		rx = vx;
@@ -111,10 +118,13 @@ RaycastData Raycaster::drawRays(vec2 pos, float ang) {
 		distance = disHorizontal;
 	}
 
-	distance = distance * cos(ca);
+	printf("%f %f %f \n", camAng, ra, ca);
 
-	//printf("%f, %f : %f,%f \n", pos.x, pos.y, rx, ry);
-	//r.drawLine(pos, { rx, ry });
+
+	printf("%f -", distance);
+
+	distance *= cos(ca);
+	printf(" %f -", distance);
 
 	return { { rx, ry }, distance };
 }
