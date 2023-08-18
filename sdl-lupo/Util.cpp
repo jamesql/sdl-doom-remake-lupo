@@ -13,5 +13,5 @@ int Util::fixAng(int a) {
 
 float Util::distance(vec2 firstPoint, vec2 secondPoint, int ang)
 {
-	return cos(Util::degToRad(ang)) * (secondPoint.x - firstPoint.x) - sin(Util::degToRad(ang)) * (secondPoint.y-firstPoint.y);
+	return cos(ang) * (secondPoint.x - firstPoint.x) - sin(ang) * (secondPoint.y-firstPoint.y);
 }
