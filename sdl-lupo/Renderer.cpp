@@ -33,6 +33,7 @@
 
 	void Renderer::clear() {
 		pixels.clear();
+		rects.clear();
 	}
 
 	void Renderer::drawLine(vec2 firstPoint, vec2 secondPoint) {

@@ -61,7 +61,6 @@ void GameLoop::loop()
 
 	for (curAng = startAngle; curAng <= endAngle; curAng += R) {
 		RaycastData ray = Raycaster::drawRays(camPos, Util::fixAngRad(curAng), ang);
-		printf(" %f \n", ray.dis);
 		int lineH = (TempMap::cSize * 320) / ray.dis;
 		if (lineH > 320) lineH = 320;
 		int lineOff = 160 - lineH/2;

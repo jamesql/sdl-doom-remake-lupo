@@ -48,7 +48,7 @@ RaycastData Raycaster::drawRays(vec2 pos, float ang, float camAng) {
 		if (mapPos > 0 && mapPos < TempMap::mapX * TempMap::mapY && TempMap::map[mapPos] == 1)
 		{
 			dof = 8;
-			disVertical = cos(ra) * (rx - pos.x) - sin(ra) * (ry - pos.y);
+			disVertical = Util::distance(pos, { rx, ry }, camAng - ra);
 		}//hit         
 		else {
 			rx += xo; ry += yo; dof += 1;
@@ -89,7 +89,7 @@ RaycastData Raycaster::drawRays(vec2 pos, float ang, float camAng) {
 		if (mapPos > 0 && mapPos < TempMap::mapX * TempMap::mapY && TempMap::map[mapPos] == 1)
 		{ // hit
 			dof = 8;
-			disHorizontal = cos(ra) * (rx - pos.x) - sin(ra) * (ry - pos.y);
+			disHorizontal = Util::distance(pos, { rx, ry }, camAng - ra);
 		}
 		else {
 			rx += xo; ry += yo; dof += 1;
@@ -118,13 +118,7 @@ RaycastData Raycaster::drawRays(vec2 pos, float ang, float camAng) {
 		distance = disHorizontal;
 	}
 
-	printf("%f %f %f \n", camAng, ra, ca);
-
-
-	printf("%f -", distance);
-
 	distance *= cos(ca);
-	printf(" %f -", distance);
 
 	return { { rx, ry }, distance };
 }

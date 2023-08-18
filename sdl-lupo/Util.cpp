@@ -20,5 +20,5 @@ float Util::fixAngRad(float ang) {
 
 float Util::distance(vec2 firstPoint, vec2 secondPoint, int ang)
 {
-	return cos(ang) * (secondPoint.x - firstPoint.x) - sin(ang) * (secondPoint.y-firstPoint.y);
+	return sqrt( (secondPoint.x - firstPoint.x) * (secondPoint.x - firstPoint.x) + (secondPoint.y-firstPoint.y) * (secondPoint.y - firstPoint.y));
 }
